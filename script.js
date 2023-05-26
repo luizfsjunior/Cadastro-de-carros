@@ -43,4 +43,8 @@ function cadastrar() {
             console.error(e);
         });
 
+    raInput.value = "";
+    nomeInput.value = "";
+    telInput.value = "";
+    dataNascInput.value = "";
 }
