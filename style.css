@@ -29,3 +29,62 @@ body {
     padding: 14px 16px;
     text-decoration: none;
 }
+
+.cadastro-container {
+    display: grid;
+    place-items: center;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+        ". . marca cor km . ."
+        ". . modelo placa ano . ."
+        ". . . botao . . .";
+}
+
+.cadastro-marca {
+    padding: 5px;
+    grid-area: marca;
+}
+
+.cadastro-modelo {
+    padding: 5px;
+    grid-area: modelo;
+}
+
+.cadastro-cor {
+    padding: 5px;
+    grid-area: cor;
+}
+
+.cadastro-placa {
+    padding: 5px;
+    grid-area: placa;
+}
+
+.cadastro-km {
+    padding: 5px;
+    grid-area: km;
+}
+
+.cadastro-ano {
+    padding: 5px;
+    grid-area: ano;
+}
+
+.cadastro-ano>lselect {
+
+    padding: 5px;
+    grid-area: ano;
+    text-align: center;
+}
+
+
+#cadastro-btn {
+
+    text-align: center;
+    grid-area: botao;
+    width: 80px;
+    height: 20px;
+}
+
+@media only screen and (max-width:500px) {}
