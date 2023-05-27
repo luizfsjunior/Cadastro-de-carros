@@ -10,6 +10,25 @@
 </head>
 
 <body>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.1/firebase-app.js";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
+      
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+          apiKey: "AIzaSyACdJhhNZOxB8ig3GrfmLSV9J0_2jnEhdY",
+          authDomain: "cadastro-de-carros-573be.firebaseapp.com",
+          projectId: "cadastro-de-carros-573be",
+          storageBucket: "cadastro-de-carros-573be.appspot.com",
+          messagingSenderId: "377719944957",
+          appId: "1:377719944957:web:9dcf64cfeacd93557c7094"
+        };
+      
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+      </script>
     <header>
         <div class="page-header">
             <div>
@@ -188,7 +207,9 @@
     </section>
     <section class="carros" id="Carros">
         <br><br>
-        <h1>Carros</h1><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        <h1>Carros
+            <ul id="lista-dados"></ul>
+        </h1>
     </section>
 </body>
 
