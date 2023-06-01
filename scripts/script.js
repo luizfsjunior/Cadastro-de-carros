@@ -1,3 +1,14 @@
+function limpa_form() {
+    document.getElementById("marca").value = "";
+    document.getElementById("modelo").value = "";
+    document.getElementById("cor").value = "";
+    document.getElementById("placa").value = "";
+    document.getElementById("ano").value = "";
+    document.getElementById("km").value = "";
+
+}
+
+
 function deletar(id) {
     const options = {
         method: 'DELETE'
@@ -54,13 +65,7 @@ function cadastrar(id, method) {
         })
         .then(() => {
             // Limpar os campos do formulário
-            document.getElementById("marca").value = "";
-            document.getElementById("modelo").value = "";
-            document.getElementById("cor").value = "";
-            document.getElementById("placa").value = "";
-            document.getElementById("ano").value = "";
-            document.getElementById("km").value = "";
-
+            limpa_form();
             // Atualizar a tabela com os novos dados
             busca();
         })
@@ -102,6 +107,7 @@ function criarBotaoEditar(index) {
         let btnEdit = document.getElementById("edit-btn");
         btnEdit.addEventListener("click", () => {
             cadastrar(index, 'PATCH')
+            limpa_form();
             div_edit.style.display = "none"
             btnCadastro.style.display = "block"
         });
@@ -109,12 +115,14 @@ function criarBotaoEditar(index) {
         let btnDelete = document.getElementById("delete-btn");
         btnDelete.addEventListener("click", () => {
             deletar(index)
+            limpa_form();
             div_edit.style.display = "none"
             btnCadastro.style.display = "block"
         });
 
         let btnVolta = document.getElementById("voltar-btn");
         btnVolta.addEventListener("click", () => {
+            limpa_form();
             div_edit.style.display = "none"
             btnCadastro.style.display = "block"
         });
