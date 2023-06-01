@@ -1,22 +1,11 @@
-function limpa_form() {
-    document.getElementById("marca").value = "";
-    document.getElementById("modelo").value = "";
-    document.getElementById("cor").value = "";
-    document.getElementById("placa").value = "";
-    document.getElementById("ano").value = "";
-    document.getElementById("km").value = "";
-
-}
-
-
 function deletar(id) {
     const options = {
         method: 'DELETE'
     }
 
     fetch("https://firestore.googleapis.com/v1/projects/cadastro-de-carros-573be/databases/(default)/documents/Carros/" + id, options)
-        .then(t => {
-            console.log(id);
+        .then(() => {
+            limpa_form();
             busca();
         })
         .catch(error => {
@@ -60,9 +49,6 @@ function cadastrar(id, method) {
     }
 
     fetch("https://firestore.googleapis.com/v1/projects/cadastro-de-carros-573be/databases/(default)/documents/Carros/" + id, options)
-        .then(t => {
-            console.log(id);
-        })
         .then(() => {
             // Limpar os campos do formulário
             limpa_form();
@@ -76,62 +62,67 @@ function cadastrar(id, method) {
 }
 
 
+function limpa_form() {
+    document.getElementById("marca").value = "";
+    document.getElementById("modelo").value = "";
+    document.getElementById("cor").value = "";
+    document.getElementById("placa").value = "";
+    document.getElementById("ano").value = "";
+    document.getElementById("km").value = "";
 
+}
+let currentIndex
 function criarBotaoEditar(index) {
     let botaoSelect = document.createElement("button");
     botaoSelect.textContent = "Selecionar";
 
-    botaoSelect.addEventListener("click", () => {
-        fetch("https://firestore.googleapis.com/v1/projects/cadastro-de-carros-573be/databases/(default)/documents/Carros/" + index)
+
+    botaoSelect.addEventListener("click", function () {
+        currentIndex = index;
+        fetch("https://firestore.googleapis.com/v1/projects/cadastro-de-carros-573be/databases/(default)/documents/Carros/" + currentIndex)
             .then(response => response.json())
             .then(carros => {
-                document.getElementById("marca").value = carros.fields.marca.stringValue;
-                document.getElementById("modelo").value = carros.fields.modelo.stringValue;
-                document.getElementById("cor").value = carros.fields.cor.stringValue;
-                document.getElementById("placa").value = carros.fields.placa.stringValue;
-                document.getElementById("ano").value = carros.fields.ano.integerValue;
-                document.getElementById("km").value = carros.fields.km.stringValue;
+                const carro = carros.fields;
+                document.getElementById("marca").value = carro.marca.stringValue;
+                document.getElementById("modelo").value = carro.modelo.stringValue;
+                document.getElementById("cor").value = carro.cor.stringValue;
+                document.getElementById("placa").value = carro.placa.stringValue;
+                document.getElementById("ano").value = carro.ano.integerValue;
+                document.getElementById("km").value = carro.km.stringValue;
+
+                let btnCadastro = document.getElementById("cadastro-btn");
+                let div_edit = document.getElementById("editar");
+
+                btnCadastro.style.display = "none";
+                div_edit.style.display = "flex";
+
+                let btnEdit = document.getElementById("edit-btn");
+                btnEdit.addEventListener("click", function () {
+                    cadastrar(currentIndex, 'PATCH'); // Usa o índice atual
+                    div_edit.style.display = "none";
+                    btnCadastro.style.display = "block";
+                });
+
+                let btnDelete = document.getElementById("delete-btn");
+                btnDelete.addEventListener("click", function () {
+                    deletar(currentIndex); // Usa o índice atual
+                    div_edit.style.display = "none";
+                    btnCadastro.style.display = "block";
+                });
+
+                let btnVolta = document.getElementById("voltar-btn");
+                btnVolta.addEventListener("click", function () {
+                    div_edit.style.display = "none";
+                    btnCadastro.style.display = "block";
+                });
             })
             .catch(error => {
                 console.error(error);
             });
-
-        let btnCadastro = document.getElementById("cadastro-btn");
-        let div_edit = document.getElementById("editar");
-
-        btnCadastro.style.display = "none"
-        div_edit.style.display = "flex"
-
-
-
-        let btnEdit = document.getElementById("edit-btn");
-        btnEdit.addEventListener("click", () => {
-            cadastrar(index, 'PATCH')
-            limpa_form();
-            div_edit.style.display = "none"
-            btnCadastro.style.display = "block"
-        });
-
-        let btnDelete = document.getElementById("delete-btn");
-        btnDelete.addEventListener("click", () => {
-            deletar(index)
-            limpa_form();
-            div_edit.style.display = "none"
-            btnCadastro.style.display = "block"
-        });
-
-        let btnVolta = document.getElementById("voltar-btn");
-        btnVolta.addEventListener("click", () => {
-            limpa_form();
-            div_edit.style.display = "none"
-            btnCadastro.style.display = "block"
-        });
-
-
     });
+
     return botaoSelect;
 }
-
 
 function busca() {
     let corpoTabela = document.getElementById("corpoTabela");
@@ -142,7 +133,6 @@ function busca() {
             corpoTabela.innerHTML = "";
 
             let n = carros.documents.length;
-            console.log(n);
             let i;
 
             for (i = 0; i < n; i++) {
