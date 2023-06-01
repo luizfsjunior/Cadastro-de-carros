@@ -77,6 +77,20 @@ function criarBotaoEditar(index) {
     botaoSelect.textContent = "Selecionar";
 
     botaoSelect.addEventListener("click", () => {
+        fetch("https://firestore.googleapis.com/v1/projects/cadastro-de-carros-573be/databases/(default)/documents/Carros/" + index)
+            .then(response => response.json())
+            .then(carros => {
+                document.getElementById("marca").value = carros.fields.marca.stringValue;
+                document.getElementById("modelo").value = carros.fields.modelo.stringValue;
+                document.getElementById("cor").value = carros.fields.cor.stringValue;
+                document.getElementById("placa").value = carros.fields.placa.stringValue;
+                document.getElementById("ano").value = carros.fields.ano.integerValue;
+                document.getElementById("km").value = carros.fields.km.stringValue;
+            })
+            .catch(error => {
+                console.error(error);
+            });
+
         let btnCadastro = document.getElementById("cadastro-btn");
         let div_edit = document.getElementById("editar");
 
