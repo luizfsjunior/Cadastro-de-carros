@@ -126,8 +126,33 @@ select {
 
 
 #cadastro-btn,
-#edit-btn {
-    width: auto;
+#edit-btn,
+#delete-btn,
+#voltar-btn {
+    margin: 5px;
+    background-color: lightseagreen;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    width: 86px;
+    height: 40px;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.308);
+}
+
+#voltar-btn {
+    width: 30px;
+    background-color: grey;
+}
+
+#delete-btn {
+    background-color: rgb(231, 83, 83);
+}
+
+td>button {
+    margin: 5px;
     background-color: lightseagreen;
     color: #fff;
     border: none;
@@ -135,19 +160,43 @@ select {
     font-size: 16px;
     cursor: pointer;
     text-align: center;
-    width: 100px;
-    height: 40px;
+    width: 90px;
+    height: 30px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.308);
 }
 
-#cadastro-btn:active {
+#cadastro-btn:active,
+#edit-btn:active,
+td>button:active {
     background-color: rgb(26, 145, 139);
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.308);
     transform: translateY(4px);
 }
 
-#cadastro-btn:hover {
+#delete-btn:active {
+    background-color: rgb(196, 69, 69);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.308);
+    transform: translateY(4px);
+}
+
+#voltar-btn:active {
+    background-color: rgb(102, 102, 102);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.308);
+    transform: translateY(4px);
+}
+
+#cadastro-btn:hover,
+#edit-btn:hover,
+td>button:hover {
     background-color: rgb(26, 145, 139);
+}
+
+#voltar-btn:hover {
+    background-color: rgb(102, 102, 102);
+}
+
+#delete-btn:hover {
+    background-color: rgb(196, 69, 69);
 }
 
 .carros-container {
@@ -158,7 +207,9 @@ select {
 
 #editar {
     display: none;
+
 }
+
 
 .buttons-edit {
     grid-area: botao;

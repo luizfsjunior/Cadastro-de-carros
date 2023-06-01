@@ -6,6 +6,7 @@ function deletar(id) {
     fetch("https://firestore.googleapis.com/v1/projects/cadastro-de-carros-573be/databases/(default)/documents/Carros/" + id, options)
         .then(t => {
             console.log(id);
+            busca();
         })
         .catch(error => {
             console.error(error);
@@ -72,24 +73,41 @@ function cadastrar(id, method) {
 
 
 function criarBotaoEditar(index) {
-    let botaoEditar = document.createElement("button");
-    botaoEditar.textContent = "Editar";
+    let botaoSelect = document.createElement("button");
+    botaoSelect.textContent = "Selecionar";
 
-    botaoEditar.addEventListener("click", () => {
-        let div_edit = document.getElementById("editar");
-        div_edit.style.display = "flex"
+    botaoSelect.addEventListener("click", () => {
         let btnCadastro = document.getElementById("cadastro-btn");
+        let div_edit = document.getElementById("editar");
+
         btnCadastro.style.display = "none"
+        div_edit.style.display = "flex"
+
+
 
         let btnEdit = document.getElementById("edit-btn");
-        btnEdit.addEventListener("click", cadastrar(index, 'PATCH'));
+        btnEdit.addEventListener("click", () => {
+            cadastrar(index, 'PATCH')
+            div_edit.style.display = "none"
+            btnCadastro.style.display = "block"
+        });
 
         let btnDelete = document.getElementById("delete-btn");
-        btnEdit.addEventListener("click", deletar(index));
+        btnDelete.addEventListener("click", () => {
+            deletar(index)
+            div_edit.style.display = "none"
+            btnCadastro.style.display = "block"
+        });
+
+        let btnVolta = document.getElementById("voltar-btn");
+        btnVolta.addEventListener("click", () => {
+            div_edit.style.display = "none"
+            btnCadastro.style.display = "block"
+        });
 
 
     });
-    return botaoEditar;
+    return botaoSelect;
 }
 
 
