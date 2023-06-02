@@ -93,38 +93,38 @@ select {
 }
 
 .cadastro-marca {
-    padding: 5px;
+    padding: 16px;
     grid-area: marca;
 }
 
 .cadastro-modelo {
-    padding: 5px;
+    padding: 16px;
     grid-area: modelo;
 }
 
 .cadastro-cor {
-    padding: 5px;
+    padding: 16px;
     grid-area: cor;
 }
 
 .cadastro-placa {
-    padding: 5px;
+    padding: 16px;
     grid-area: placa;
 }
 
 .cadastro-km {
-    padding: 5px;
+    padding: 16px;
     grid-area: km;
 }
 
 .cadastro-ano {
-    padding: 5px;
+    padding: 16px;
     grid-area: ano;
 }
 
 .cadastro-ano>lselect {
 
-    padding: 5px;
+    padding: 8px;
     grid-area: ano;
     text-align: center;
 }
