@@ -112,6 +112,7 @@ function criarBotaoEditar(index) {
 
                 let btnVolta = document.getElementById("voltar-btn");
                 btnVolta.addEventListener("click", function () {
+                    limpa_form();
                     div_edit.style.display = "none";
                     btnCadastro.style.display = "block";
                 });

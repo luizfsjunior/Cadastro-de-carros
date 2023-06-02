@@ -122,7 +122,7 @@ select {
     grid-area: ano;
 }
 
-.cadastro-ano>lselect {
+.cadastro-ano>select {
 
     padding: 8px;
     grid-area: ano;
